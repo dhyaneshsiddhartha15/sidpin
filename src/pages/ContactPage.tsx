@@ -22,19 +22,19 @@ export default function ContactPage() {
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email",
-      details: "info@sidpin.com",
+      details: "sidpin.com@gmail.com",
       description: "Send us an email anytime"
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Phone",
-      details: "+91 123 456 7890",
+      details: "+91  74538 69244",
       description: "Call us during business hours"
     },
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: "Location",
-      details: "Uttarakhand, India",
+      details: "Near Miyawala Dharamshala, Birla Farm, Haripur Kalan, Uttarakhand 249205,India",
       description: "Our headquarters location"
     },
     {
@@ -184,7 +184,7 @@ export default function ContactPage() {
                         <input
                           id="phone"
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                          placeholder="+91 123 456 7890"
+                          placeholder="+91  74538 69244"
                         />
                       </div>
                       <div className="space-y-2">

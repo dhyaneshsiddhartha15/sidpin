@@ -87,7 +87,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail size={14} />
-                <span>info@sidpin.com</span>
+                <span>sidpin.com@gmail.com</span>
               </li>
             </ul>
             <div className="pt-2 flex items-center gap-4">

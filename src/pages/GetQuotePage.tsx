@@ -131,7 +131,7 @@ export default function GetQuotePage() {
                   <MapPin className="h-5 w-5 text-primary" />
                   <div>
                     <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">Uttarakhand, India</p>
+                    <p className="text-muted-foreground">Near Miyawala Dharamshala, 249205,Birla Farm, Haripur Kalan, Uttarakhand ,India </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
