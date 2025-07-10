@@ -369,7 +369,7 @@ export default function AboutUsPage() {
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -407,7 +407,7 @@ export default function AboutUsPage() {
               </Card>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -441,13 +441,13 @@ export default function AboutUsPage() {
                   </ul>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
 
       {/* Career Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/5 to-secondary/5">
+      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/5 to-secondary/5">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -471,7 +471,7 @@ export default function AboutUsPage() {
             </CTAButton>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Info */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">

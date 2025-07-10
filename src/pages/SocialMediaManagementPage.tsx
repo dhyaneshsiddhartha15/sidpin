@@ -19,6 +19,15 @@ import { CTAButton } from "@/components/cta-button";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import agfitness from '../assets/insta/agfitness.jpg'
+import navdeep from '../assets/insta/navdeep.jpg'
+import yog from '../assets/insta/yog.jpg'
+import rudradharma from '../assets/insta/rudradharma.jpg'
+import swati from '../assets/insta/swati.jpg'
+import astro from '../assets/insta/astro.jpg'
+import ganges from '../assets/insta/ganges.jpg'
+import yog2 from '../assets/insta/yog2.jpg'
+import panch from '../assets/insta/panch.jpg'
 
 const services = [
   { 
@@ -122,6 +131,100 @@ const faqData = [
     question: "How do I get started with Sidpin's social media services?",
     answer: "Simply reach out to us via WhatsApp or our contact form, and we'll schedule a free consultation to understand your needs, suggest a package, and build a custom strategy for your business."
   }
+];
+
+const portfolioData = [
+  {
+    handle: "@a.g.fitness2025",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/a.g.fitness2025/",
+    image: agfitness // Can add image URLs later
+  },
+  {
+    handle: "@panchbhootyog",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/panchbhootyog/",
+    image: panch // Can add image URLs later
+  },
+  {
+    handle: "@yog.adhyayan",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/yog.adhyayan/",
+    image: yog2 // Can add image URLs later
+  },
+  {
+    handle: "@yog_adhyayan108",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/yog_adhyayan108/",
+    image: yog // Can add image URLs later
+  },
+  {
+    handle: "@rudradharmarudraksha",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/rudradharmarudraksha/",
+    image: rudradharma // Can add image URLs later
+  },
+  {
+    handle: "@navdeepfoundation",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/navdeepfoundation/",
+    image: navdeep // Can add image URLs later
+  },
+  {
+    handle: "@amatrabytheganges",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/amatrabytheganges/",
+    image: ganges // Can add image URLs later
+  },
+  {
+    handle: "@_astro_pandit",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/_astro_pandit/",
+    image: astro // Can add image URLs later
+  },
+  {
+    handle: "@swaatiraitiwari",
+    // businessType: "Local Restaurant", 
+    // growth: "+250%",
+    // engagement: "8.5%",
+    color: "from-pink-500 to-purple-500",
+    bgColor: "from-pink-100 to-purple-100",
+    link: "https://www.instagram.com/swaatiraitiwari/",
+    image: swati // Can add image URLs later
+  },
+  
 ];
 
 export default function SocialMediaManagementPage() {
@@ -373,6 +476,91 @@ export default function SocialMediaManagementPage() {
         </div>
       </section>
 
+      {/* Instagram Portfolio Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              Our Instagram Portfolio
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              See how we've helped businesses grow their social media presence
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {portfolioData.map((item, index) => (
+              <motion.div
+                key={item.handle}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  rotateX: 5
+                }}
+                className="transform-gpu"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <Card className="border-border/50 bg-gradient-to-br from-background/50 to-background group hover:shadow-2xl transition-all duration-300">
+                  <CardHeader className="text-center pb-4">
+                    <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <Eye className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-bold">{item.handle}</CardTitle>
+                    {/* <p className="text-sm text-muted-foreground">{item.businessType}</p> */}
+                  </CardHeader>
+                  <CardContent>
+                    <div className={`aspect-square bg-gradient-to-br ${item.bgColor} rounded-lg mb-4 flex items-center justify-center`}>
+                      {item.image ? (
+                        <img 
+                          src={item.image} 
+                          alt={`${item.handle} post preview`} 
+                          className="w-full h-full object-cover object-top rounded-lg hover:scale-110 transition-transform duration-300 " 
+                        />
+                      ) : (
+                        <p className="text-sm text-muted-foreground">Instagram Preview</p>
+                      )}
+                    </div>
+                    {item.link && (
+                      <a 
+                        href={item.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white text-center py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium"
+                      >
+                        View Profile
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-12"
+          >
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-gradient-to-r from-primary/10 to-secondary/10 hover:from-primary/20 hover:to-secondary/20 border-primary/20 text-primary hover:text-primary/80"
+            >
+              View More Portfolio
+            </Button>
+          </motion.div> */}
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -437,7 +625,8 @@ export default function SocialMediaManagementPage() {
               <CTAButton variant="primary" size="lg" className="text-lg px-8 py-4">
                 Get Started Today
               </CTAButton>
-              <CTAButton variant="outline" size="lg" className="text-lg px-8 py-4">
+              <CTAButton size="lg" className="text-lg px-8 py-4">
+              {/* <CTAButton variant="outline" size="lg" className="text-lg px-8 py-4"> */}
                 View Our Work
               </CTAButton>
             </div>

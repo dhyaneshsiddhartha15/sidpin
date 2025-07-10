@@ -6,6 +6,12 @@ import FloatingSpheres from "@/components/three/floating-sphere";
 import DigitalExperienceAnimation from "@/components/three/digital-experience-animation";
 import { CTAButton } from "@/components/cta-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import rudradharma from '../assets/rudradharma.png';
+import panchbhootyog from '../assets/panchbhootyog.png';
+import panchbhootyatra from '../assets/panchbhootyatra.png';
+import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
+import yogadhyanyan from '../assets/yogadhyayan.png';
+
 import { 
   ArrowRight,
   Code,
@@ -79,42 +85,35 @@ export default function HomePage() {
     {
       title: "Rudra Dharma E-commerce",
       description: "Premium e-commerce platform for spiritual and religious products",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+      image: rudradharma,
       technologies: ["E-commerce", "WordPress", "Payment Gateway"],
       link: "https://www.rudradharma.com"
     },
     {
       title: "Yoga Dhyayan",
       description: "Spiritual learning and yoga practice platform",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
+      image: yogadhyanyan,
       technologies: ["Yoga", "Learning", "CMS"],
       link: "https://yogadhyayan.com"
     },
     {
       title: "Panchbhoot Yog",
       description: "Holistic yoga and wellness center website",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
+      image: panchbhootyog,
       technologies: ["Wellness", "Yoga", "Booking"],
       link: "https://Panchbhootyog.com"
     },
     {
       title: "Panchbhoot Yatra",
       description: "Spiritual travel and pilgrimage booking platform",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+      image: panchbhootyatra,
       technologies: ["Travel", "Booking", "Tours"],
       link: "https://Panchbhootyatra.com"
     },
     {
-      title: "Himalayan Wedding",
-      description: "Destination wedding planning in the Himalayas",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-      technologies: ["Wedding", "Events", "Booking"],
-      link: "https://Himalayanwedding.com"
-    },
-    {
       title: "Sutra Spiritual Clinic",
       description: "Holistic healing and spiritual wellness services",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+      image: sutraspiritualclinic,
       technologies: ["Healthcare", "Wellness", "Booking"],
       link: "https://sutraspiritualclinic.com"
     },
@@ -164,7 +163,8 @@ export default function HomePage() {
               <CTAButton asChild className="w-full sm:w-auto">
                 <Link to="/contact">Start Your Digital Journey</Link>
               </CTAButton>
-              <CTAButton variant="outline" asChild className="w-full sm:w-auto">
+              {/* <CTAButton variant="outline" asChild className="w-full sm:w-auto"> */}
+              <CTAButton asChild className="w-full sm:w-auto">
                 <Link to="/services">Explore Our Services</Link>
               </CTAButton>
             </motion.div>

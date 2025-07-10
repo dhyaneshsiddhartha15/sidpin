@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, Calendar, ChevronDown } from "lucide-react";
@@ -19,6 +18,7 @@ const navLinks = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleBookAppointment = () => {
@@ -37,6 +37,10 @@ export function Navbar() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  const toggleMobileDropdown = () => {
+    setMobileDropdownOpen(!mobileDropdownOpen);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <nav className="mx-auto px-4 sm:px-6 lg:px-8 py-4 backdrop-blur-md bg-background/70 border-b border-border">
@@ -44,7 +48,7 @@ export function Navbar() {
           <div className="flex items-center gap-x-4 lg:gap-x-8">
             <Link to="/" className="flex items-center gap-2" onClick={closeMobileMenu}>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-poppins">
-                SIDPIN
+                SIDPIN DIGITAL
               </span>
             </Link>
             
@@ -122,14 +126,40 @@ export function Navbar() {
           <div className="lg:hidden py-4 space-y-4 absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border z-20 max-h-[calc(100vh-80px)] overflow-y-auto">
             <div className="px-4 space-y-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="block py-3 text-base font-medium text-foreground/80 hover:text-primary border-b border-border/50 last:border-b-0"
-                  onClick={closeMobileMenu}
-                >
-                  {link.name}
-                </Link>
+                <div key={link.path}>
+                  {link.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={toggleMobileDropdown}
+                        className="flex items-center justify-between w-full py-3 text-base font-medium text-foreground/80 hover:text-primary border-b border-border/50"
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown 
+                          className={`h-4 w-4 transition-transform ${
+                            mobileDropdownOpen ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
+                      
+                      {mobileDropdownOpen && (
+                        <div className="mt-2 pl-4 pb-2">
+                          <ServiceDropdown 
+                            isMobile={true}
+                            onItemClick={closeMobileMenu}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className="block py-3 text-base font-medium text-foreground/80 hover:text-primary border-b border-border/50 last:border-b-0"
+                      onClick={closeMobileMenu}
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
             
