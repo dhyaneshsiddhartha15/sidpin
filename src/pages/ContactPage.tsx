@@ -1159,7 +1159,7 @@ export default function ContactPage() {
         style={{ zIndex: -1 }}
       />
         <div className="max-w-4xl mx-auto text-center">
-          <span className="text-gradient text-6xl md:text-8xl font-bold mb-6 mouse-move boom"> Let's Talk Us</span>
+          <span className="text-gradient text-6xl md:text-8xl font-bold mb-6 mouse-move boom"> Let's Talk</span>
       {/* <Smoke /> */}
         </div>
         </div>
