@@ -1050,7 +1050,7 @@ export default function ContactPage() {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email",
       details: "sidpin.com@gmail.com",
-      description: "Send us an email anytime"
+      description: "Send us an email Anytime"
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
