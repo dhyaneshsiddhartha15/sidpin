@@ -160,11 +160,11 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <CTAButton asChild className="w-full sm:w-auto">
+              <CTAButton asChild className="w-full sm:w-auto text-white">
                 <Link to="/contact">Start Your Digital Journey</Link>
               </CTAButton>
               {/* <CTAButton variant="outline" asChild className="w-full sm:w-auto"> */}
-              <CTAButton asChild className="w-full sm:w-auto">
+              <CTAButton asChild className="w-full sm:w-auto text-white">
                 <Link to="/services">Explore Our Services</Link>
               </CTAButton>
             </motion.div>
@@ -382,7 +382,7 @@ export default function HomePage() {
 
           <div className="text-center mt-12">
             <CTAButton asChild>
-              <Link to="/contact" className="inline-flex items-center gap-2">
+              <Link to="/contact" className="inline-flex items-center gap-2 text-white">
                 View All Projects <ArrowRight className="h-4 w-4" />
               </Link>
             </CTAButton>
@@ -465,8 +465,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <CTAButton asChild>
-              <Link to="/services" className="inline-flex items-center gap-2">
+            <CTAButton 
+            asChild>
+              <Link to="/services" className="inline-flex items-center gap-2 text-white">
                 View All Services <ArrowRight className="h-4 w-4" />
               </Link>
             </CTAButton>
@@ -494,8 +495,8 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
               <CTAButton
-                variant="secondary"
-                className="border-2 border-white w-full sm:w-auto"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto"
                 asChild
               >
                 <Link to="/contact">Get Free Consultation</Link>

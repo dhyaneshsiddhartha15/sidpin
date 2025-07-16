@@ -471,10 +471,10 @@ export default function DigitalMarketingPage() {
               Let's discuss your digital marketing goals and create a strategy that drives real results for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton variant="primary" size="lg" className="text-lg px-8 py-4">
+              <CTAButton variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary hover:border-primary">
                 Get Started Today
               </CTAButton>
-              <CTAButton variant="outline" size="lg" className="text-lg px-8 py-4">
+              <CTAButton variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary hover:border-primary">
                 View Our Portfolio
               </CTAButton>
             </div>

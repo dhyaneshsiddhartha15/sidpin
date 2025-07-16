@@ -266,8 +266,9 @@ export default function WhyChooseUsPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <CTAButton
-                variant="secondary"
-                className="border-2 border-white"
+                // variant="secondary"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary"
                 asChild
               >
                 <Link to="/contact">Start Your Project</Link>

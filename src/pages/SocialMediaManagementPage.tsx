@@ -622,11 +622,10 @@ export default function SocialMediaManagementPage() {
               Let's create a social media strategy that engages your audience and drives real business results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton variant="primary" size="lg" className="text-lg px-8 py-4">
+<CTAButton variant="outline" size="lg"                 className="border-2 border-white text-white hover:bg-white hover:text-primary hover:border-primary">
                 Get Started Today
               </CTAButton>
-              <CTAButton size="lg" className="text-lg px-8 py-4">
-              {/* <CTAButton variant="outline" size="lg" className="text-lg px-8 py-4"> */}
+<CTAButton variant="outline" size="lg"                 className="border-2 border-white text-white hover:bg-white hover:text-primary hover:border-primary">
                 View Our Work
               </CTAButton>
             </div>

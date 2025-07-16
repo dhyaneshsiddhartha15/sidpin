@@ -217,10 +217,15 @@ export default function OurWorkPage() {
             Let's work together to create something amazing. Get in touch with us to discuss your next digital project.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <CTAButton asChild>
+            <CTAButton 
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-primary"
+            asChild>
               <Link to="/contact">Start Your Project</Link>
             </CTAButton>
-            <CTAButton variant="outline" asChild>
+            <CTAButton variant="outline" 
+                className="border-2 border-white text-white hover:bg-white hover:text-primary"
+            asChild>
               <Link to="/get-quote">Get a Quote</Link>
             </CTAButton>
           </div>

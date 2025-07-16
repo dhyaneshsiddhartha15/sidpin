@@ -484,10 +484,13 @@ export default function MobileAppDevelopmentPage() {
               Let's discuss your mobile app project and create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton variant="primary" size="lg" className="text-lg px-8 py-4">
+              <CTAButton variant="outline" size="lg"                 
+                              className="border-2 border-white text-white hover:bg-white hover:text-primary hover:border-primary"
+              >
                 Get Started Today
               </CTAButton>
-              <CTAButton variant="outline" size="lg" className="text-lg px-8 py-4">
+              <CTAButton variant="outline" size="lg"                 className="border-2 border-white text-white hover:bg-white hover:text-primary"
+              >
                 View Portfolio
               </CTAButton>
             </div>
