@@ -5,13 +5,18 @@ import { CTAButton } from "@/components/cta-button";
 import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { Laptop3D } from "@/components/three/laptop-3d";
+import rudradharma from '../assets/rudradharma.png';
+import panchbhootyog from '../assets/panchbhootyog.png';
+import panchbhootyatra from '../assets/panchbhootyatra.png';
+import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
+import yogadhyanyan from '../assets/yogadhyayan.png';
 
 export default function OurWorkPage() {
   const portfolioProjects = [
     {
       title: "Rudra Dharma E-commerce",
       description: "Premium e-commerce platform for spiritual and religious products with advanced shopping features, secure payment integration, and inventory management system.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+      image: rudradharma,
       technologies: ["E-commerce", "WordPress", "Payment Gateway", "WooCommerce"],
       link: "https://www.rudradharma.com",
       category: "E-commerce"
@@ -19,7 +24,7 @@ export default function OurWorkPage() {
     {
       title: "Yoga Dhyayan",
       description: "Comprehensive spiritual learning and yoga practice platform featuring online courses, meditation guides, and community engagement tools for holistic wellness.",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
+      image: yogadhyanyan,
       technologies: ["Yoga", "Learning Management", "CMS", "Community Platform"],
       link: "https://yogadhyayan.com",
       category: "Education"
@@ -27,7 +32,7 @@ export default function OurWorkPage() {
     {
       title: "Panchbhoot Yog",
       description: "Modern holistic yoga and wellness center website with class scheduling, instructor profiles, membership management, and online booking system.",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
+      image: panchbhootyog,
       technologies: ["Wellness", "Yoga", "Booking System", "Membership"],
       link: "https://Panchbhootyog.com",
       category: "Health & Wellness"
@@ -35,23 +40,23 @@ export default function OurWorkPage() {
     {
       title: "Panchbhoot Yatra",
       description: "Comprehensive spiritual travel and pilgrimage booking platform with tour packages, accommodation booking, and travel guide services.",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+      image: panchbhootyatra,
       technologies: ["Travel", "Booking Platform", "Tour Management", "Payment Integration"],
       link: "https://Panchbhootyatra.com",
       category: "Travel & Tourism"
     },
-    {
-      title: "Himalayan Wedding",
-      description: "Luxury destination wedding planning platform specializing in Himalayan venues with vendor management, event coordination, and booking services.",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-      technologies: ["Wedding Planning", "Event Management", "Vendor Network", "Booking System"],
-      link: "https://Himalayanwedding.com",
-      category: "Events & Wedding"
-    },
+    // {
+    //   title: "Himalayan Wedding",
+    //   description: "Luxury destination wedding planning platform specializing in Himalayan venues with vendor management, event coordination, and booking services.",
+    //   image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+    //   technologies: ["Wedding Planning", "Event Management", "Vendor Network", "Booking System"],
+    //   link: "https://Himalayanwedding.com",
+    //   category: "Events & Wedding"
+    // },
     {
       title: "Sutra Spiritual Clinic",
       description: "Advanced holistic healing and spiritual wellness services platform with appointment booking, practitioner profiles, and wellness tracking.",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+      image: sutraspiritualclinic,
       technologies: ["Healthcare", "Wellness Platform", "Appointment System", "Patient Management"],
       link: "https://sutraspiritualclinic.com",
       category: "Healthcare"
