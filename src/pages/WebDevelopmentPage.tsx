@@ -22,6 +22,11 @@ import { CTAButton } from "@/components/cta-button";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import rudradharma from '../assets/rudradharma.png';
+import panchbhootyog from '../assets/panchbhootyog.png';
+import panchbhootyatra from '../assets/panchbhootyatra.png';
+import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
+import yogadhyanyan from '../assets/yogadhyayan.png';
 
 const services = [
   { name: "WordPress Web Development", description: "SEO-optimized and easy-to-manage sites" },
@@ -83,36 +88,48 @@ const technologies = [
 
 const portfolioProjects = [
   {
-    title: "Cafe Bliss Website",
-    description: "A sleek, responsive website for a local café.",
-    image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=500&auto=format&fit=crop",
-    link: "#"
-  },
+        title: "Rudra Dharma E-commerce",
+        description: "Premium e-commerce platform for spiritual and religious products",
+        image: rudradharma,
+        technologies: ["E-commerce", "WordPress", "Payment Gateway"],
+        link: "https://www.rudradharma.com"
+      },
   {
-    title: "FitLife E-commerce",
-    description: "A fitness product store built using MERN Stack.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=500&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "EduTrack LMS",
-    description: "A learning platform for educators and students.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "Uttarakhand Tours",
-    description: "A travel site for booking tours in Uttarakhand.",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=500&auto=format&fit=crop",
-    link: "#"
-  },
-  {
-    title: "InnovaTech Solutions",
-    description: "Corporate site for a tech startup.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=500&auto=format&fit=crop",
-    link: "#"
-  }
-];
+      title: "Yoga Dhyayan",
+      description: "Spiritual learning and yoga practice platform",
+      image: yogadhyanyan,
+      technologies: ["Yoga", "Learning", "CMS"],
+      link: "https://yogadhyayan.com"
+    },
+    {
+      title: "Panchbhoot Yog",
+      description: "Holistic yoga and wellness center website",
+      image: panchbhootyog,
+      technologies: ["Wellness", "Yoga", "Booking"],
+      link: "https://Panchbhootyog.com"
+    },
+    {
+      title: "Panchbhoot Yatra",
+      description: "Spiritual travel and pilgrimage booking platform",
+      image: panchbhootyatra,
+      technologies: ["Travel", "Booking", "Tours"],
+      link: "https://Panchbhootyatra.com"
+    },
+    {
+      title: "Sutra Spiritual Clinic",
+      description: "Holistic healing and spiritual wellness services",
+      image: sutraspiritualclinic,
+      technologies: ["Healthcare", "Wellness", "Booking"],
+      link: "https://sutraspiritualclinic.com"
+    },
+    {
+      title: "Doha Bus", // image change 
+      description: "Public transportation booking and tracking system",
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+      technologies: ["Transport", "Booking", "Mobile App"],
+      link: "https://www.dohabus.com/"
+    }
+  ];
 
 const consultingSteps = [
   {

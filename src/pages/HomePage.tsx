@@ -6,11 +6,11 @@ import FloatingSpheres from "@/components/three/floating-sphere";
 import DigitalExperienceAnimation from "@/components/three/digital-experience-animation";
 import { CTAButton } from "@/components/cta-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import rudradharma from '../assets/rudradharma.png';
-import panchbhootyog from '../assets/panchbhootyog.png';
-import panchbhootyatra from '../assets/panchbhootyatra.png';
-import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
-import yogadhyanyan from '../assets/yogadhyayan.png';
+// import rudradharma from '../assets/rudradharma.png';
+// import panchbhootyog from '../assets/panchbhootyog.png';
+// import panchbhootyatra from '../assets/panchbhootyatra.png';
+// import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
+// import yogadhyanyan from '../assets/yogadhyayan.png';
 
 import { 
   ArrowRight,
@@ -81,50 +81,50 @@ export default function HomePage() {
     }
   ];
 
-  const portfolioProjects = [
-    {
-      title: "Rudra Dharma E-commerce",
-      description: "Premium e-commerce platform for spiritual and religious products",
-      image: rudradharma,
-      technologies: ["E-commerce", "WordPress", "Payment Gateway"],
-      link: "https://www.rudradharma.com"
-    },
-    {
-      title: "Yoga Dhyayan",
-      description: "Spiritual learning and yoga practice platform",
-      image: yogadhyanyan,
-      technologies: ["Yoga", "Learning", "CMS"],
-      link: "https://yogadhyayan.com"
-    },
-    {
-      title: "Panchbhoot Yog",
-      description: "Holistic yoga and wellness center website",
-      image: panchbhootyog,
-      technologies: ["Wellness", "Yoga", "Booking"],
-      link: "https://Panchbhootyog.com"
-    },
-    {
-      title: "Panchbhoot Yatra",
-      description: "Spiritual travel and pilgrimage booking platform",
-      image: panchbhootyatra,
-      technologies: ["Travel", "Booking", "Tours"],
-      link: "https://Panchbhootyatra.com"
-    },
-    {
-      title: "Sutra Spiritual Clinic",
-      description: "Holistic healing and spiritual wellness services",
-      image: sutraspiritualclinic,
-      technologies: ["Healthcare", "Wellness", "Booking"],
-      link: "https://sutraspiritualclinic.com"
-    },
-    {
-      title: "Doha Bus",
-      description: "Public transportation booking and tracking system",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
-      technologies: ["Transport", "Booking", "Mobile App"],
-      link: "https://www.dohabus.com/"
-    }
-  ];
+  // const portfolioProjects = [
+  //   {
+  //     title: "Rudra Dharma E-commerce",
+  //     description: "Premium e-commerce platform for spiritual and religious products",
+  //     image: rudradharma,
+  //     technologies: ["E-commerce", "WordPress", "Payment Gateway"],
+  //     link: "https://www.rudradharma.com"
+  //   },
+  //   {
+  //     title: "Yoga Dhyayan",
+  //     description: "Spiritual learning and yoga practice platform",
+  //     image: yogadhyanyan,
+  //     technologies: ["Yoga", "Learning", "CMS"],
+  //     link: "https://yogadhyayan.com"
+  //   },
+  //   {
+  //     title: "Panchbhoot Yog",
+  //     description: "Holistic yoga and wellness center website",
+  //     image: panchbhootyog,
+  //     technologies: ["Wellness", "Yoga", "Booking"],
+  //     link: "https://Panchbhootyog.com"
+  //   },
+  //   {
+  //     title: "Panchbhoot Yatra",
+  //     description: "Spiritual travel and pilgrimage booking platform",
+  //     image: panchbhootyatra,
+  //     technologies: ["Travel", "Booking", "Tours"],
+  //     link: "https://Panchbhootyatra.com"
+  //   },
+  //   {
+  //     title: "Sutra Spiritual Clinic",
+  //     description: "Holistic healing and spiritual wellness services",
+  //     image: sutraspiritualclinic,
+  //     technologies: ["Healthcare", "Wellness", "Booking"],
+  //     link: "https://sutraspiritualclinic.com"
+  //   },
+  //   {
+  //     title: "Doha Bus",
+  //     description: "Public transportation booking and tracking system",
+  //     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+  //     technologies: ["Transport", "Booking", "Mobile App"],
+  //     link: "https://www.dohabus.com/"
+  //   }
+  // ];
 
   return (
     <div className="min-h-screen relative font-outfit">
@@ -311,7 +311,7 @@ export default function HomePage() {
       </section>
 
       {/* Our Work Section */}
-      <section
+      {/* <section
         ref={sectionRefs.work}
         id="work"
         className="py-20 bg-muted/50"
@@ -388,7 +388,7 @@ export default function HomePage() {
             </CTAButton>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Preview Section */}
       <section
