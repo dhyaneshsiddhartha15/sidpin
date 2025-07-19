@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
@@ -58,24 +57,42 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Our Aim
-                </a>
+                <Link to="/about-us" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  About Us
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/our-work" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Our Work
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#testimonials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Testimonials
-                </a>
+                <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider">
+              Legal
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/terms-and-conditions" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
           </div>
@@ -87,7 +104,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail size={14} />
-                <span>sidpin.com@gmail.com</span>
+                <span>info@sidpin.com</span>
               </li>
             </ul>
             <div className="pt-2 flex items-center gap-4">

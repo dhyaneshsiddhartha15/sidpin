@@ -21,6 +21,8 @@ import DigitalMarketingPage from "./pages/DigitalMarketingPage";
 import SocialMediaManagementPage from "./pages/SocialMediaManagementPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import OurWorkPage from "./pages/OurWorkPage";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 // Import Google Fonts in index.html
 if (document.head && !document.head.querySelector('link[href*="fonts.googleapis.com"]')) {
@@ -56,6 +58,8 @@ const App = () => (
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/get-quote" element={<GetQuotePage />} />
                 <Route path="/appointment" element={<AppointmentPage />} />
+                <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
