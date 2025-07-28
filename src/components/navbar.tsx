@@ -106,7 +106,7 @@ export function Navbar() {
               className="hidden sm:flex text-xs sm:text-sm px-2 sm:px-4"
               onClick={handleGetQuote}
             >
-              <span className="hidden md:inline">Get a Quote</span>
+              <span className="hidden md:inline text-white">Get a Quote</span>
               <span className="md:hidden text-white">Quote</span>
             </CTAButton>
 

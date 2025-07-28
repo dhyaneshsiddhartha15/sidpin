@@ -133,7 +133,8 @@ export default function HomePage() {
         ref={sectionRefs.hero}
         className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-20"
       >
-        <FloatingSpheres numberOfSpheres={15} />
+        {/* <FloatingSpheres numberOfSpheres={5} /> */}
+        <FloatingSpheres />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-32 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
             <motion.h1 

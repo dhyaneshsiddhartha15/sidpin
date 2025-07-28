@@ -27,6 +27,7 @@ import panchbhootyog from '../assets/panchbhootyog.png';
 import panchbhootyatra from '../assets/panchbhootyatra.png';
 import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
 import yogadhyanyan from '../assets/yogadhyayan.png';
+import doha from '../assets/doha.png';
 
 const services = [
   { name: "WordPress Web Development", description: "SEO-optimized and easy-to-manage sites" },
@@ -123,9 +124,9 @@ const portfolioProjects = [
       link: "https://sutraspiritualclinic.com"
     },
     {
-      title: "Doha Bus", // image change 
+      title: "Doha Bus", 
       description: "Public transportation booking and tracking system",
-      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+      image: doha,
       technologies: ["Transport", "Booking", "Mobile App"],
       link: "https://www.dohabus.com/"
     }

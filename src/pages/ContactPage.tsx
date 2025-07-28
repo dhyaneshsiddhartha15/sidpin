@@ -1072,37 +1072,6 @@ export default function ContactPage() {
     }
   ];
 
-  // const faqs = [
-  //   {
-  //     question: "What is the best programming language for web development?",
-  //     answer: "It depends on your goals. Popular choices include PHP, Python, JavaScript (Node.js), and frameworks like Laravel, React, or Angular. We help you choose the right technology stack based on your specific project requirements, scalability needs, and business objectives."
-  //   },
-  //   {
-  //     question: "What are the advantages of using a web framework?",
-  //     answer: "Frameworks accelerate development, improve code quality, enhance security, and enable scalable solutions. They provide pre-built components, follow best practices, and offer standardized patterns that make development more efficient and maintainable."
-  //   },
-  //   {
-  //     question: "What is the difference between client-side and server-side scripting?",
-  //     answer: "Client-side scripting (JavaScript) runs on the browser and handles user interface interactions, while server-side scripting (PHP, Python, Node.js) runs on the server to create dynamic content, handle databases, and manage business logic."
-  //   },
-  //   {
-  //     question: "How long does it take to develop a website?",
-  //     answer: "Timeline varies based on complexity. A simple business website takes 2-4 weeks, while complex e-commerce or custom applications may take 6-12 weeks. We provide detailed timelines during the planning phase."
-  //   },
-  //   {
-  //     question: "Do you provide ongoing support and maintenance?",
-  //     answer: "Yes, we offer comprehensive support and maintenance packages including security updates, content updates, performance monitoring, backup management, and technical support to keep your website running smoothly."
-  //   },
-  //   {
-  //     question: "What is responsive web design?",
-  //     answer: "Responsive design ensures your website looks and functions perfectly on all devices - smartphones, tablets, and desktops. It automatically adjusts layout, images, and content to provide optimal user experience across different screen sizes."
-  //   }
-  // ];
-
-  // const toggleFaq = (index: number) => {
-  //   setOpenFaq(openFaq === index ? null : index);
-  // };
-
   return (
     <div className="min-h-screen relative font-outfit">
       {/* Hero Section */}
@@ -1160,10 +1129,9 @@ export default function ContactPage() {
       />
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-gradient text-6xl md:text-8xl font-bold mb-6 mouse-move boom"> Let's Talk</span>
-      {/* <Smoke /> */}
         </div>
         </div>
-        {/* </div> */}
+        
 
       <style jsx>{`
         .scale-200 {
@@ -1299,9 +1267,9 @@ export default function ContactPage() {
                     </div>
                     
                     <div>
-                      <CTAButton className="w-full">
-                        <MessageSquare className="h-4 w-4 mr-2" />
-                        Send Message
+                      <CTAButton className="w-full text-white flex items-center justify-center gap-2">
+                        {/* <MessageSquare className="h-4 w-4 text-white" /> */}
+                      <span>Send Message</span>
                       </CTAButton>
                     </div>
                   </form>
