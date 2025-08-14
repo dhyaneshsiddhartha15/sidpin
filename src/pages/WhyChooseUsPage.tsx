@@ -125,7 +125,7 @@ export default function WhyChooseUsPage() {
             >
               <span className="text-gradient">Why Choose</span>
               <br />
-              <span className="text-foreground">Sidpin?</span>
+              <span className="text-foreground">Sidpin Digital ?</span>
             </motion.h1>
             <motion.p 
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto"
