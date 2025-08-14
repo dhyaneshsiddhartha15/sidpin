@@ -45,14 +45,7 @@ export default function OurWorkPage() {
       link: "https://Panchbhootyatra.com",
       category: "Travel & Tourism"
     },
-    // {
-    //   title: "Himalayan Wedding",
-    //   description: "Luxury destination wedding planning platform specializing in Himalayan venues with vendor management, event coordination, and booking services.",
-    //   image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-    //   technologies: ["Wedding Planning", "Event Management", "Vendor Network", "Booking System"],
-    //   link: "https://Himalayanwedding.com",
-    //   category: "Events & Wedding"
-    // },
+    
     {
       title: "Sutra Spiritual Clinic",
       description: "Advanced holistic healing and spiritual wellness services platform with appointment booking, practitioner profiles, and wellness tracking.",

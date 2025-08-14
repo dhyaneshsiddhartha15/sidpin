@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,11 +5,6 @@ import FloatingSpheres from "@/components/three/floating-sphere";
 import DigitalExperienceAnimation from "@/components/three/digital-experience-animation";
 import { CTAButton } from "@/components/cta-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import rudradharma from '../assets/rudradharma.png';
-// import panchbhootyog from '../assets/panchbhootyog.png';
-// import panchbhootyatra from '../assets/panchbhootyatra.png';
-// import sutraspiritualclinic from '../assets/sutraspiritualclinic.png';
-// import yogadhyanyan from '../assets/yogadhyayan.png';
 
 import { 
   ArrowRight,
@@ -80,51 +74,6 @@ export default function HomePage() {
       description: "Strategic brand promotion across multiple digital channels and platforms. We create cohesive brand messaging, develop engaging content marketing strategies, manage social media presence, and execute integrated marketing campaigns that build brand awareness and customer loyalty."
     }
   ];
-
-  // const portfolioProjects = [
-  //   {
-  //     title: "Rudra Dharma E-commerce",
-  //     description: "Premium e-commerce platform for spiritual and religious products",
-  //     image: rudradharma,
-  //     technologies: ["E-commerce", "WordPress", "Payment Gateway"],
-  //     link: "https://www.rudradharma.com"
-  //   },
-  //   {
-  //     title: "Yoga Dhyayan",
-  //     description: "Spiritual learning and yoga practice platform",
-  //     image: yogadhyanyan,
-  //     technologies: ["Yoga", "Learning", "CMS"],
-  //     link: "https://yogadhyayan.com"
-  //   },
-  //   {
-  //     title: "Panchbhoot Yog",
-  //     description: "Holistic yoga and wellness center website",
-  //     image: panchbhootyog,
-  //     technologies: ["Wellness", "Yoga", "Booking"],
-  //     link: "https://Panchbhootyog.com"
-  //   },
-  //   {
-  //     title: "Panchbhoot Yatra",
-  //     description: "Spiritual travel and pilgrimage booking platform",
-  //     image: panchbhootyatra,
-  //     technologies: ["Travel", "Booking", "Tours"],
-  //     link: "https://Panchbhootyatra.com"
-  //   },
-  //   {
-  //     title: "Sutra Spiritual Clinic",
-  //     description: "Holistic healing and spiritual wellness services",
-  //     image: sutraspiritualclinic,
-  //     technologies: ["Healthcare", "Wellness", "Booking"],
-  //     link: "https://sutraspiritualclinic.com"
-  //   },
-  //   {
-  //     title: "Doha Bus",
-  //     description: "Public transportation booking and tracking system",
-  //     image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
-  //     technologies: ["Transport", "Booking", "Mobile App"],
-  //     link: "https://www.dohabus.com/"
-  //   }
-  // ];
 
   return (
     <div className="min-h-screen relative font-outfit">
@@ -310,87 +259,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Our Work Section */}
-      {/* <section
-        ref={sectionRefs.work}
-        id="work"
-        className="py-20 bg-muted/50"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Our Work</h2>
-            <div className="w-20 h-1 bg-primary mx-auto"></div>
-            <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-              Discover our portfolio of successful projects and digital transformations across various industries.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {portfolioProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-card hover:shadow-lg transition-all duration-300 border-border/50 overflow-hidden h-full group hover:scale-105">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    <div className="absolute top-4 right-4">
-                      <a 
-                        href={project.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="bg-white/90 p-2 rounded-full hover:bg-white transition-colors"
-                      >
-                        <ExternalLink className="h-4 w-4 text-gray-800" />
-                      </a>
-                    </div>
-                  </div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex}
-                          className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <CTAButton asChild>
-              <Link to="/contact" className="inline-flex items-center gap-2 text-white">
-                View All Projects <ArrowRight className="h-4 w-4" />
-              </Link>
-            </CTAButton>
-          </div>
-        </div>
-      </section> */}
-
       {/* Services Preview Section */}
       <section
         ref={sectionRefs.services}
