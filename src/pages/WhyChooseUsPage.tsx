@@ -114,7 +114,8 @@ export default function WhyChooseUsPage() {
         ref={heroRef}
         className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-20"
       >
-        <FloatingSpheres numberOfSpheres={10} />
+        {/* <FloatingSpheres numberOfSpheres={10} /> */}
+        <FloatingSpheres />
         <div className="container mx-auto px-6 py-16 lg:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -125,7 +126,7 @@ export default function WhyChooseUsPage() {
             >
               <span className="text-gradient">Why Choose</span>
               <br />
-              <span className="text-foreground">Sidpin Digital ?</span>
+              <span className="text-foreground">Sidpin Digital?</span>
             </motion.h1>
             <motion.p 
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto"
