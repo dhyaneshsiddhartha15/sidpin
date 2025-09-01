@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FloatingSpheres from "@/components/three/floating-sphere";
+import GoogleMapEmbed from "@/components/GoogleMap";
 import { CTAButton } from "@/components/cta-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
+import {
   Mail,
   Phone,
   MapPin,
@@ -92,8 +93,8 @@ export default function ContactPage() {
       const heroSection = document.querySelector('.hero-section');
       if (heroSection) {
         const heroRect = heroSection.getBoundingClientRect();
-        if (e.clientY >= heroRect.top && e.clientY <= heroRect.bottom && 
-            e.clientX >= heroRect.left && e.clientX <= heroRect.right) {
+        if (e.clientY >= heroRect.top && e.clientY <= heroRect.bottom &&
+          e.clientX >= heroRect.left && e.clientX <= heroRect.right) {
           if (fluidSimRef.current && fluidSimRef.current.colorHover) {
             fluidSimRef.current.colorHover(e);
           }
@@ -159,8 +160,8 @@ export default function ContactPage() {
         let gl = canvas.getContext('webgl2', params) as WebGL2RenderingContext;
         const isWebGL2 = !!gl;
         if (!isWebGL2) {
-          gl = (canvas.getContext('webgl', params) || 
-                canvas.getContext('experimental-webgl', params)) as WebGL2RenderingContext;
+          gl = (canvas.getContext('webgl', params) ||
+            canvas.getContext('experimental-webgl', params)) as WebGL2RenderingContext;
         }
 
         let halfFloat: any;
@@ -982,7 +983,7 @@ export default function ContactPage() {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         pointers[0].moved = pointers[0].down;
         pointers[0].dx = (x - pointers[0].x) * 5.0;
         pointers[0].dy = (y - pointers[0].y) * 5.0;
@@ -1009,7 +1010,7 @@ export default function ContactPage() {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         // Check if coordinates are within canvas bounds
         if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
           pointers[0].down = true;
@@ -1037,6 +1038,64 @@ export default function ContactPage() {
       // Cleanup if needed
     };
   }, []);
+
+
+  interface FormData {
+    name: string;
+    email: string;
+    phoneNo: string;
+    service: string;
+    message: string;
+  }
+
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    phoneNo: "",
+    service: "",
+    message: ""
+  });
+
+  const [status, setStatus] = useState<FormStatus>({
+    isSubmitting: false,
+    isSuccess: false,
+    error: null
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === 'submitting') return;
+
+    setStatus('submitting');
+
+    try {
+      const response = await fetch('https://sidpin-backend.vercel.app/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log(response);
+
+      if (!response.ok) throw new Error('Failed to send message.');
+
+      setStatus('success');
+      setFormData({ name: "", email: "", phoneNo: "", service: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    }
+  };
 
   const contactInfo = [
     {
@@ -1150,7 +1209,7 @@ export default function ContactPage() {
                         />
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium">
@@ -1179,19 +1238,8 @@ export default function ContactPage() {
                         </select>
                       </div>
                     </div>
-                    
-                    <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium">
-                        Subject *
-                      </label>
-                      <input
-                        id="subject"
-                        className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                        placeholder="Project inquiry"
-                        required
-                      />
-                    </div>
-                    
+
+
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-medium">
                         Message *
@@ -1204,7 +1252,7 @@ export default function ContactPage() {
                         required
                       />
                     </div>
-                    
+
                     <div>
                       <CTAButton className="w-full text-white flex items-center justify-center gap-2">
                         <span>Send Message</span>
@@ -1221,7 +1269,7 @@ export default function ContactPage() {
       {/* Location Map Section */}
       <section className="py-20 bg-muted/50">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1240,16 +1288,17 @@ export default function ContactPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
-            <div className="bg-card rounded-lg border border-border/50 overflow-hidden h-96 flex items-center justify-center">
-              <div className="text-center p-8">
+            <div className="bg-card  rounded-lg border border-border/50 overflow-hidden h-96 flex items-center justify-center">
+              <div className="w-1/2 text-center p-8">
                 <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Uttarakhand, India</h3>
                 <p className="text-muted-foreground">
                   Our team is based in Uttarakhand, providing local expertise with global standards.
                 </p>
               </div>
+              <GoogleMapEmbed />
             </div>
           </motion.div>
         </div>
