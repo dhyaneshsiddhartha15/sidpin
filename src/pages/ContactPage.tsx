@@ -1056,11 +1056,6 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
     message: ""
   });
 
-  const [status, setStatus] = useState<FormStatus>({
-    isSubmitting: false,
-    isSuccess: false,
-    error: null
-  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
@@ -1070,30 +1065,37 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
     }));
   };
 
+  type FormStatus = {
+    isSubmitting: boolean;
+    isSuccess: boolean;
+    error: string | null;
+  }
+  const [status, setStatus] = useState<FormStatus>({
+    isSubmitting: false,
+    isSuccess: false,
+    error: null,
+  });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === 'submitting') return;
+    if (status.isSubmitting) return;
 
-    setStatus('submitting');
+    setStatus({ isSubmitting: true, isSuccess: false, error: null });
 
     try {
       const response = await fetch('https://sidpin-backend.vercel.app/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      console.log(response);
-
       if (!response.ok) throw new Error('Failed to send message.');
 
-      setStatus('success');
+      setStatus({ isSubmitting: false, isSuccess: true, error: null });
       setFormData({ name: "", email: "", phoneNo: "", service: "", message: "" });
     } catch (error) {
       console.error(error);
-      setStatus('error');
+      setStatus({ isSubmitting: false, isSuccess: false, error: "Failed to send message." });
     }
   };
 
@@ -1191,6 +1193,7 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
                         </label>
                         <input
                           id="name"
+                          value={formData.name}
                           onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                           placeholder="John Doe"
@@ -1203,6 +1206,7 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
                         </label>
                         <input
                           id="email"
+                          value={formData.email}
                           onChange={handleChange}
                           type="email"
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
@@ -1214,11 +1218,12 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-sm font-medium">
+                        <label htmlFor="phoneNo" className="text-sm font-medium">
                           Phone Number
                         </label>
                         <input
-                          id="phone"
+                          id="phoneNo"
+                          value={formData.phoneNo}
                           onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                           placeholder="+91  74538 69244"
@@ -1230,6 +1235,7 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
                         </label>
                         <select
                           id="service"
+                          value={formData.service}
                           onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         >
@@ -1260,8 +1266,11 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
                     </div>
 
                     <div>
-                      <CTAButton className="w-full text-white flex items-center justify-center gap-2">
-                        <span>Send Message</span>
+                      <CTAButton
+                        className="w-full text-white flex items-center justify-center gap-2"
+                        disabled={status.isSubmitting}
+                      >
+                        {status.isSubmitting ? "Sending..." : "Send Message"}
                       </CTAButton>
                     </div>
                   </form>
@@ -1314,3 +1323,4 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
     </div>
   );
 }
+
