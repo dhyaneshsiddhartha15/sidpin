@@ -287,297 +287,297 @@ export default function ContactPage() {
 
       // Shader sources
       const baseVertexShader = compileShader(gl.VERTEX_SHADER, `
-        precision highp float;
-        attribute vec2 aPosition;
-        varying vec2 vUv;
-        varying vec2 vL;
-        varying vec2 vR;
-        varying vec2 vT;
-        varying vec2 vB;
-        uniform vec2 texelSize;
+precision highp float;
+attribute vec2 aPosition;
+varying vec2 vUv;
+varying vec2 vL;
+varying vec2 vR;
+varying vec2 vT;
+varying vec2 vB;
+uniform vec2 texelSize;
 
-        void main () {
-            vUv = aPosition * 0.5 + 0.5;
-            vL = vUv - vec2(texelSize.x, 0.0);
-            vR = vUv + vec2(texelSize.x, 0.0);
-            vT = vUv + vec2(0.0, texelSize.y);
-            vB = vUv - vec2(0.0, texelSize.y);
-            gl_Position = vec4(aPosition, 0.0, 1.0);
-        }
-      `);
+void main () {
+vUv = aPosition * 0.5 + 0.5;
+vL = vUv - vec2(texelSize.x, 0.0);
+vR = vUv + vec2(texelSize.x, 0.0);
+vT = vUv + vec2(0.0, texelSize.y);
+vB = vUv - vec2(0.0, texelSize.y);
+gl_Position = vec4(aPosition, 0.0, 1.0);
+}
+`);
 
       const clearShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying highp vec2 vUv;
-        uniform sampler2D uTexture;
-        uniform float value;
+precision mediump float;
+precision mediump sampler2D;
+varying highp vec2 vUv;
+uniform sampler2D uTexture;
+uniform float value;
 
-        void main () {
-            gl_FragColor = value * texture2D(uTexture, vUv);
-        }
-      `);
+void main () {
+gl_FragColor = value * texture2D(uTexture, vUv);
+}
+`);
 
       const colorShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        uniform vec4 color;
+precision mediump float;
+uniform vec4 color;
 
-        void main () {
-            gl_FragColor = color;
-        }
-      `);
+void main () {
+gl_FragColor = color;
+}
+`);
 
       const displayShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision highp sampler2D;
-        varying vec2 vUv;
-        uniform sampler2D uTexture;
+precision highp float;
+precision highp sampler2D;
+varying vec2 vUv;
+uniform sampler2D uTexture;
 
-        void main () {
-            vec3 C = texture2D(uTexture, vUv).rgb;
-            float a = max(C.r, max(C.g, C.b));
-            gl_FragColor = vec4(C, a);
-        }
-      `);
+void main () {
+vec3 C = texture2D(uTexture, vUv).rgb;
+float a = max(C.r, max(C.g, C.b));
+gl_FragColor = vec4(C, a);
+}
+`);
 
       const displayBloomShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision highp sampler2D;
-        varying vec2 vUv;
-        uniform sampler2D uTexture;
-        uniform sampler2D uBloom;
-        uniform sampler2D uDithering;
-        uniform vec2 ditherScale;
+precision highp float;
+precision highp sampler2D;
+varying vec2 vUv;
+uniform sampler2D uTexture;
+uniform sampler2D uBloom;
+uniform sampler2D uDithering;
+uniform vec2 ditherScale;
 
-        void main () {
-            vec3 C = texture2D(uTexture, vUv).rgb;
-            vec3 bloom = texture2D(uBloom, vUv).rgb;
-            vec3 noise = texture2D(uDithering, vUv * ditherScale).rgb;
-            noise = noise * 2.0 - 1.0;
-            bloom += noise / 800.0;
-            bloom = pow(bloom.rgb, vec3(1.0 / 2.2));
-            C += bloom;
-            float a = max(C.r, max(C.g, C.b));
-            gl_FragColor = vec4(C, a);
-        }
-      `);
+void main () {
+vec3 C = texture2D(uTexture, vUv).rgb;
+vec3 bloom = texture2D(uBloom, vUv).rgb;
+vec3 noise = texture2D(uDithering, vUv * ditherScale).rgb;
+noise = noise * 2.0 - 1.0;
+bloom += noise / 800.0;
+bloom = pow(bloom.rgb, vec3(1.0 / 2.2));
+C += bloom;
+float a = max(C.r, max(C.g, C.b));
+gl_FragColor = vec4(C, a);
+}
+`);
 
       const bloomPrefilterShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying vec2 vUv;
-        uniform sampler2D uTexture;
-        uniform vec3 curve;
-        uniform float threshold;
+precision mediump float;
+precision mediump sampler2D;
+varying vec2 vUv;
+uniform sampler2D uTexture;
+uniform vec3 curve;
+uniform float threshold;
 
-        void main () {
-            vec3 c = texture2D(uTexture, vUv).rgb;
-            float br = max(c.r, max(c.g, c.b));
-            float rq = clamp(br - curve.x, 0.0, curve.y);
-            rq = curve.z * rq * rq;
-            c *= max(rq, br - threshold) / max(br, 0.0001);
-            gl_FragColor = vec4(c, 0.0);
-        }
-      `);
+void main () {
+vec3 c = texture2D(uTexture, vUv).rgb;
+float br = max(c.r, max(c.g, c.b));
+float rq = clamp(br - curve.x, 0.0, curve.y);
+rq = curve.z * rq * rq;
+c *= max(rq, br - threshold) / max(br, 0.0001);
+gl_FragColor = vec4(c, 0.0);
+}
+`);
 
       const bloomBlurShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying vec2 vL;
-        varying vec2 vR;
-        varying vec2 vT;
-        varying vec2 vB;
-        uniform sampler2D uTexture;
+precision mediump float;
+precision mediump sampler2D;
+varying vec2 vL;
+varying vec2 vR;
+varying vec2 vT;
+varying vec2 vB;
+uniform sampler2D uTexture;
 
-        void main () {
-            vec4 sum = vec4(0.0);
-            sum += texture2D(uTexture, vL);
-            sum += texture2D(uTexture, vR);
-            sum += texture2D(uTexture, vT);
-            sum += texture2D(uTexture, vB);
-            sum *= 0.25;
-            gl_FragColor = sum;
-        }
-      `);
+void main () {
+vec4 sum = vec4(0.0);
+sum += texture2D(uTexture, vL);
+sum += texture2D(uTexture, vR);
+sum += texture2D(uTexture, vT);
+sum += texture2D(uTexture, vB);
+sum *= 0.25;
+gl_FragColor = sum;
+}
+`);
 
       const bloomFinalShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying vec2 vL;
-        varying vec2 vR;
-        varying vec2 vT;
-        varying vec2 vB;
-        uniform sampler2D uTexture;
-        uniform float intensity;
+precision mediump float;
+precision mediump sampler2D;
+varying vec2 vL;
+varying vec2 vR;
+varying vec2 vT;
+varying vec2 vB;
+uniform sampler2D uTexture;
+uniform float intensity;
 
-        void main () {
-            vec4 sum = vec4(0.0);
-            sum += texture2D(uTexture, vL);
-            sum += texture2D(uTexture, vR);
-            sum += texture2D(uTexture, vT);
-            sum += texture2D(uTexture, vB);
-            sum *= 0.25;
-            gl_FragColor = sum * intensity;
-        }
-      `);
+void main () {
+vec4 sum = vec4(0.0);
+sum += texture2D(uTexture, vL);
+sum += texture2D(uTexture, vR);
+sum += texture2D(uTexture, vT);
+sum += texture2D(uTexture, vB);
+sum *= 0.25;
+gl_FragColor = sum * intensity;
+}
+`);
 
       const splatShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision highp sampler2D;
-        varying vec2 vUv;
-        uniform sampler2D uTarget;
-        uniform float aspectRatio;
-        uniform vec3 color;
-        uniform vec2 point;
-        uniform float radius;
+precision highp float;
+precision highp sampler2D;
+varying vec2 vUv;
+uniform sampler2D uTarget;
+uniform float aspectRatio;
+uniform vec3 color;
+uniform vec2 point;
+uniform float radius;
 
-        void main () {
-            vec2 p = vUv - point.xy;
-            p.x *= aspectRatio;
-            vec3 splat = exp(-dot(p, p) / radius) * color;
-            vec3 base = texture2D(uTarget, vUv).xyz;
-            gl_FragColor = vec4(base + splat, 1.0);
-        }
-      `);
+void main () {
+vec2 p = vUv - point.xy;
+p.x *= aspectRatio;
+vec3 splat = exp(-dot(p, p) / radius) * color;
+vec3 base = texture2D(uTarget, vUv).xyz;
+gl_FragColor = vec4(base + splat, 1.0);
+}
+`);
 
       const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision highp sampler2D;
-        varying vec2 vUv;
-        uniform sampler2D uVelocity;
-        uniform sampler2D uSource;
-        uniform vec2 texelSize;
-        uniform float dt;
-        uniform float dissipation;
+precision highp float;
+precision highp sampler2D;
+varying vec2 vUv;
+uniform sampler2D uVelocity;
+uniform sampler2D uSource;
+uniform vec2 texelSize;
+uniform float dt;
+uniform float dissipation;
 
-        void main () {
-            vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
-            gl_FragColor = dissipation * texture2D(uSource, coord);
-            gl_FragColor.a = 1.0;
-        }
-      `);
+void main () {
+vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
+gl_FragColor = dissipation * texture2D(uSource, coord);
+gl_FragColor.a = 1.0;
+}
+`);
 
       const divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying highp vec2 vUv;
-        varying highp vec2 vL;
-        varying highp vec2 vR;
-        varying highp vec2 vT;
-        varying highp vec2 vB;
-        uniform sampler2D uVelocity;
+precision mediump float;
+precision mediump sampler2D;
+varying highp vec2 vUv;
+varying highp vec2 vL;
+varying highp vec2 vR;
+varying highp vec2 vT;
+varying highp vec2 vB;
+uniform sampler2D uVelocity;
 
-        void main () {
-            float L = texture2D(uVelocity, vL).x;
-            float R = texture2D(uVelocity, vR).x;
-            float T = texture2D(uVelocity, vT).y;
-            float B = texture2D(uVelocity, vB).y;
+void main () {
+float L = texture2D(uVelocity, vL).x;
+float R = texture2D(uVelocity, vR).x;
+float T = texture2D(uVelocity, vT).y;
+float B = texture2D(uVelocity, vB).y;
 
-            vec2 C = texture2D(uVelocity, vUv).xy;
-            if (vL.x < 0.0) { L = -C.x; }
-            if (vR.x > 1.0) { R = -C.x; }
-            if (vT.y > 1.0) { T = -C.y; }
-            if (vB.y < 0.0) { B = -C.y; }
+vec2 C = texture2D(uVelocity, vUv).xy;
+if (vL.x < 0.0) { L = -C.x; }
+if (vR.x > 1.0) { R = -C.x; }
+if (vT.y > 1.0) { T = -C.y; }
+if (vB.y < 0.0) { B = -C.y; }
 
-            float div = 0.5 * (R - L + T - B);
-            gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
-        }
-      `);
+float div = 0.5 * (R - L + T - B);
+gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+}
+`);
 
       const curlShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying highp vec2 vUv;
-        varying highp vec2 vL;
-        varying highp vec2 vR;
-        varying highp vec2 vT;
-        varying highp vec2 vB;
-        uniform sampler2D uVelocity;
+precision mediump float;
+precision mediump sampler2D;
+varying highp vec2 vUv;
+varying highp vec2 vL;
+varying highp vec2 vR;
+varying highp vec2 vT;
+varying highp vec2 vB;
+uniform sampler2D uVelocity;
 
-        void main () {
-            float L = texture2D(uVelocity, vL).y;
-            float R = texture2D(uVelocity, vR).y;
-            float T = texture2D(uVelocity, vT).x;
-            float B = texture2D(uVelocity, vB).x;
-            float vorticity = R - L - T + B;
-            gl_FragColor = vec4(0.5 * vorticity, 0.0, 0.0, 1.0);
-        }
-      `);
+void main () {
+float L = texture2D(uVelocity, vL).y;
+float R = texture2D(uVelocity, vR).y;
+float T = texture2D(uVelocity, vT).x;
+float B = texture2D(uVelocity, vB).x;
+float vorticity = R - L - T + B;
+gl_FragColor = vec4(0.5 * vorticity, 0.0, 0.0, 1.0);
+}
+`);
 
       const vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision highp float;
-        precision highp sampler2D;
-        varying vec2 vUv;
-        varying vec2 vL;
-        varying vec2 vR;
-        varying vec2 vT;
-        varying vec2 vB;
-        uniform sampler2D uVelocity;
-        uniform sampler2D uCurl;
-        uniform float curl;
-        uniform float dt;
+precision highp float;
+precision highp sampler2D;
+varying vec2 vUv;
+varying vec2 vL;
+varying vec2 vR;
+varying vec2 vT;
+varying vec2 vB;
+uniform sampler2D uVelocity;
+uniform sampler2D uCurl;
+uniform float curl;
+uniform float dt;
 
-        void main () {
-            float L = texture2D(uCurl, vL).x;
-            float R = texture2D(uCurl, vR).x;
-            float T = texture2D(uCurl, vT).x;
-            float B = texture2D(uCurl, vB).x;
-            float C = texture2D(uCurl, vUv).x;
+void main () {
+float L = texture2D(uCurl, vL).x;
+float R = texture2D(uCurl, vR).x;
+float T = texture2D(uCurl, vT).x;
+float B = texture2D(uCurl, vB).x;
+float C = texture2D(uCurl, vUv).x;
 
-            vec2 force = 0.5 * vec2(abs(T) - abs(B), abs(R) - abs(L));
-            force /= length(force) + 0.0001;
-            force *= curl * C;
-            force.y *= -1.0;
+vec2 force = 0.5 * vec2(abs(T) - abs(B), abs(R) - abs(L));
+force /= length(force) + 0.0001;
+force *= curl * C;
+force.y *= -1.0;
 
-            vec2 vel = texture2D(uVelocity, vUv).xy;
-            gl_FragColor = vec4(vel + force * dt, 0.0, 1.0);
-        }
-      `);
+vec2 vel = texture2D(uVelocity, vUv).xy;
+gl_FragColor = vec4(vel + force * dt, 0.0, 1.0);
+}
+`);
 
       const pressureShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying highp vec2 vUv;
-        varying highp vec2 vL;
-        varying highp vec2 vR;
-        varying highp vec2 vT;
-        varying highp vec2 vB;
-        uniform sampler2D uPressure;
-        uniform sampler2D uDivergence;
+precision mediump float;
+precision mediump sampler2D;
+varying highp vec2 vUv;
+varying highp vec2 vL;
+varying highp vec2 vR;
+varying highp vec2 vT;
+varying highp vec2 vB;
+uniform sampler2D uPressure;
+uniform sampler2D uDivergence;
 
-        void main () {
-            float L = texture2D(uPressure, vL).x;
-            float R = texture2D(uPressure, vR).x;
-            float T = texture2D(uPressure, vT).x;
-            float B = texture2D(uPressure, vB).x;
-            float C = texture2D(uPressure, vUv).x;
-            float divergence = texture2D(uDivergence, vUv).x;
-            float pressure = (L + R + B + T - divergence) * 0.25;
-            gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
-        }
-      `);
+void main () {
+float L = texture2D(uPressure, vL).x;
+float R = texture2D(uPressure, vR).x;
+float T = texture2D(uPressure, vT).x;
+float B = texture2D(uPressure, vB).x;
+float C = texture2D(uPressure, vUv).x;
+float divergence = texture2D(uDivergence, vUv).x;
+float pressure = (L + R + B + T - divergence) * 0.25;
+gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
+}
+`);
 
       const gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
-        precision mediump float;
-        precision mediump sampler2D;
-        varying highp vec2 vUv;
-        varying highp vec2 vL;
-        varying highp vec2 vR;
-        varying highp vec2 vT;
-        varying highp vec2 vB;
-        uniform sampler2D uPressure;
-        uniform sampler2D uVelocity;
+precision mediump float;
+precision mediump sampler2D;
+varying highp vec2 vUv;
+varying highp vec2 vL;
+varying highp vec2 vR;
+varying highp vec2 vT;
+varying highp vec2 vB;
+uniform sampler2D uPressure;
+uniform sampler2D uVelocity;
 
-        void main () {
-            float L = texture2D(uPressure, vL).x;
-            float R = texture2D(uPressure, vR).x;
-            float T = texture2D(uPressure, vT).x;
-            float B = texture2D(uPressure, vB).x;
-            vec2 velocity = texture2D(uVelocity, vUv).xy;
-            velocity.xy -= vec2(R - L, T - B);
-            gl_FragColor = vec4(velocity, 0.0, 1.0);
-        }
-      `);
+void main () {
+float L = texture2D(uPressure, vL).x;
+float R = texture2D(uPressure, vR).x;
+float T = texture2D(uPressure, vT).x;
+float B = texture2D(uPressure, vB).x;
+vec2 velocity = texture2D(uVelocity, vUv).xy;
+velocity.xy -= vec2(R - L, T - B);
+gl_FragColor = vec4(velocity, 0.0, 1.0);
+}
+`);
 
       // Initialize programs
       const clearProgram = new GLProgramClass(baseVertexShader, clearShader);
@@ -734,8 +734,8 @@ export default function ContactPage() {
 
         bloomFramebuffers.length = 0;
         for (let i = 0; i < config.BLOOM_ITERATIONS; i++) {
-          let width = res.width >> (i + 1);
-          let height = res.height >> (i + 1);
+          const width = res.width >> (i + 1);
+          const height = res.height >> (i + 1);
 
           if (width < 2 || height < 2) break;
 
@@ -1183,7 +1183,7 @@ export default function ContactPage() {
                   <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours.</p>
                 </CardHeader>
                 <CardContent className="pt-6 relative">
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium">
@@ -1191,6 +1191,7 @@ export default function ContactPage() {
                         </label>
                         <input
                           id="name"
+                          onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                           placeholder="John Doe"
                           required
@@ -1202,6 +1203,7 @@ export default function ContactPage() {
                         </label>
                         <input
                           id="email"
+                          onChange={handleChange}
                           type="email"
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                           placeholder="john@example.com"
@@ -1217,6 +1219,7 @@ export default function ContactPage() {
                         </label>
                         <input
                           id="phone"
+                          onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                           placeholder="+91  74538 69244"
                         />
@@ -1227,6 +1230,7 @@ export default function ContactPage() {
                         </label>
                         <select
                           id="service"
+                          onChange={handleChange}
                           className="w-full px-4 py-3 bg-background border border-input rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         >
                           <option value="">Select a service</option>
@@ -1246,6 +1250,8 @@ export default function ContactPage() {
                       </label>
                       <textarea
                         id="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         rows={6}
                         className="w-full px-4 py-3 bg-background border border-input rounded-md resize-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         placeholder="Tell us about your project requirements, timeline, and any specific features you need..."
@@ -1290,15 +1296,17 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="max-w-6xl mx-auto"
           >
-            <div className="bg-card  rounded-lg border border-border/50 overflow-hidden h-96 flex items-center justify-center">
-              <div className="w-1/2 text-center p-8">
+            <div className="bg-card rounded-lg border border-border/50 overflow-hidden h-full lg:h-96 flex flex-col lg:flex-row">
+              <div className="w-full lg:w-1/3 p-8 text-center flex flex-col items-center justify-center">
                 <MapPin className="h-16 w-16 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Uttarakhand, India</h3>
                 <p className="text-muted-foreground">
                   Our team is based in Uttarakhand, providing local expertise with global standards.
                 </p>
               </div>
-              <GoogleMapEmbed />
+              <div className="w-full lg:w-2/3 h-64 lg:h-auto">
+                <GoogleMapEmbed />
+              </div>
             </div>
           </motion.div>
         </div>
