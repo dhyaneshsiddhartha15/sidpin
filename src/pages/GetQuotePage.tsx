@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,27 +6,54 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  User, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  User,
   Award,
   Calendar,
   CheckCircle
 } from "lucide-react";
 
+
 export default function GetQuotePage() {
+  interface FormData {
+    name: string;
+    email: string;
+    phoneNo: string;
+    company: string;
+    serviceType: string;
+    budget: string;
+    timeline: string;
+    message: string;
+  }
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phoneNo: "",
     company: "",
     serviceType: "",
     budget: "",
     timeline: "",
     message: ""
   });
+
+  type FormStatus = {
+    isSubmitting: boolean;
+    isSuccess: boolean;
+    error: string | null;
+  }
+
+
+  const [status, setStatus] = useState<FormStatus>({
+    isSubmitting: false,
+    isSuccess: false,
+    error: null
+  });
+
+
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -43,17 +69,42 @@ export default function GetQuotePage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     // Handle form submission logic here
+    if (status.isSubmitting) return;
+
+
+    setStatus({ isSubmitting: true, isSuccess: false, error: null });
+
+    try {
+      const response = await fetch('https://sidpin-backend.vercel.app/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+
+      if (!response.ok) {
+        const errText = await response.text().catch(() => "");
+        throw new Error(`Failed (${response.status}): ${errText || "Bad Request"}`);
+      }
+      setStatus('success');
+      setFormData({
+        name: "", email: "", phoneNo: "", company: "", serviceType: "", budget: "", timeline: "", message: ""
+      });
+    } catch (error) {
+      setStatus('error');
+    }
   };
 
   return (
     <div className="min-h-screen bg-background pt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -187,9 +238,9 @@ export default function GetQuotePage() {
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
                       <Input
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
+                        id="phoneNo"
+                        name="phoneNo"
+                        value={formData.phoneNo}
                         onChange={handleInputChange}
                         placeholder="+91 98765 43210"
                       />
@@ -208,7 +259,10 @@ export default function GetQuotePage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="serviceType">Service Type *</Label>
-                    <Select onValueChange={(value) => handleSelectChange(value, "serviceType")}>
+                    <Select
+
+                      value={formData.serviceType}
+                      onValueChange={(value) => handleSelectChange(value, "serviceType")}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select service type" />
                       </SelectTrigger>
@@ -226,7 +280,9 @@ export default function GetQuotePage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="budget">Project Budget</Label>
-                      <Select onValueChange={(value) => handleSelectChange(value, "budget")}>
+                      <Select
+                        value={formData.budget}
+                        onValueChange={(value) => handleSelectChange(value, "budget")}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
@@ -241,7 +297,9 @@ export default function GetQuotePage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="timeline">Project Timeline</Label>
-                      <Select onValueChange={(value) => handleSelectChange(value, "timeline")}>
+                      <Select
+                        value={formData.timeline}
+                        onValueChange={(value) => handleSelectChange(value, "timeline")}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select timeline" />
                         </SelectTrigger>
@@ -270,7 +328,7 @@ export default function GetQuotePage() {
                   </div>
 
                   <Button type="submit" className="w-full">
-                    Get My Custom Quote
+                    {status.isSubmitting ? "Submitting..." : "Request Quote"}
                   </Button>
                 </form>
               </CardContent>
@@ -281,3 +339,4 @@ export default function GetQuotePage() {
     </div>
   );
 }
+
