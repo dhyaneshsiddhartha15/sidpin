@@ -1094,7 +1094,6 @@ gl_FragColor = vec4(velocity, 0.0, 1.0);
       setStatus({ isSubmitting: false, isSuccess: true, error: null });
       setFormData({ name: "", email: "", phoneNo: "", service: "", message: "" });
     } catch (error) {
-      console.error(error);
       setStatus({ isSubmitting: false, isSuccess: false, error: "Failed to send message." });
     }
   };
